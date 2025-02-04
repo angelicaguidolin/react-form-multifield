@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+export default  function App(){
+  const [albumList, setAlbumList] = useState(["Tunnel", "Dio lo sa", "è finita la pace","Containers", "Mr simpatia","Noi, loro ,gli altri", "Mi fist"])
+  const [albumName, setAlbumName]= useState("")
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    const newAlbumList= [...albumList,albumName]
+  setAlbumList(newAlbumList)
+  setAlbumName("")
+  }
+  
+  
+ return(
+  <div>
+    <h1>Album da Comprare</h1>
+    <ul>
+      {
+        albumList.map((album, index)=>(
+          <li key= {index}>{album}</li>
+        ))}
+    </ul>
+    <br />
+    <h4>INSERICI UN NUOVO ALBUM</h4>
+    <form onSubmit={handleSubmit}>
+        <input type="text" value={albumName} onChange={(e)=>{setAlbumName(e.target.value);}}/>
 
-function App() {
-  const [count, setCount] = useState(0)
+        <button type="submit">Inserisci</button>
+    </form>
+    
+  </div>
+)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
 }
-
-export default App
